@@ -2,23 +2,168 @@
 @tailwind components;
 @tailwind utilities;
 
-.fade-in-text span {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(10px);
-  animation: fade-in-text 0.5s ease-out forwards;
-}
+@layer utilities {
 
-@layer components {
-  .wpcf7-not-valid-tip {
-    @apply text-white text-sm;
+  [data-animate="section"] {
+    @apply opacity-0 translate-y-8;
+    will-change: opacity, transform;
+  }
+
+  [data-animate="item"] {
+    @apply opacity-0 translate-y-6;
+    will-change: opacity, transform;
+  }
+
+  [data-animate="subitem"] {
+    @apply opacity-0 translate-y-6;
+    will-change: opacity, transform;
+  }
+
+  /* 親セクション：少し大きめ・ゆっくり */
+  @keyframes section-in {
+    from {
+      opacity: 0;
+      transform: translateY(1.0rem);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-section {
+    animation: section-in 1.2s ease-in-out both;
+  }
+
+  /* 子要素：短めで軽い */
+  @keyframes item-in {
+    from {
+      opacity: 0;
+      transform: translateY(1.0rem);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-item {
+    animation: item-in 1.0s ease-in-out both;
+  }
+
+  @keyframes subitem-in {
+    from {
+      opacity: 0;
+      transform: translateY(0.5rem);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-subitem {
+    animation: subitem-in 0.8s ease-in-out both;
   }
 }
 
-@keyframes fade-in-text {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+
+.section-title-text {
+  @apply text-blue-700 tracking-[0em] md:tracking-[0.1em] text-center py-10 sm:py-12 md:py-16 text-[24px] sm:text-[24px] md:text-[64px] lg:text-[72px] font-semibold;
 }
 
+/* 各セクションのタイトルクラス*/
+.section-title-classes {
+  @apply max-w-7xl mx-2 md:mx-auto h-auto px-4 md:px-6 my-16 md:my-36 py-12 md:py-24 bg-gradient-to-br from-sky-100 via-sky-300 to-sky-100 shadow-lg shadow-blue-900/10 rounded-xl opacity-0;
+}
+
+/* ボタンクラス */
+.button-classes {
+  @apply bg-gradient-to-br from-amber-400 via-orange-400 to-orange-500 text-slate-100 font-semibold text-center tracking-[0.05em] text-[12px] sm:text-[16px] md:text-[32px] rounded-full px-4 sm:px-6 md:px-12 py-2 sm:py-4 md:py-6 shadow-2xl transition-all duration-300 ease-out;
+  ;
+}
+
+.button-classes:hover {
+  @apply from-amber-300 via-orange-300 to-orange-400 scale-105 shadow-xl;
+}
+
+/* career-heroセクション */
+.hero-big-text {
+  @apply tracking-[0.05em] text-slate-100 font-semibold leading-tight text-[36px] sm:text-[40px] md:text-[48px] lg:text-[56px] mx-auto;
+}
+
+.hero-small-text {
+  @apply text-slate-100 tracking-[0.05em] leading-snug text-[20px] sm:text-[28px] md:text-[32px];
+}
+
+/* career-problemセクション */
+.problem-title-text {
+  @apply text-indigo-800 tracking-[0.1em] text-[22px] sm:text-[26px] md:text-[36px] lg:text-[42px] font-semibold;
+}
+
+.problem-body-text {
+  @apply text-slate-700 tracking-[0.05em] leading-[2em] text-[16px] sm:text-[18px] md:text-[28px] pl-4 sm:pl-6 md:pl-10;
+}
+
+.problem-img {
+  @apply w-full max-w-[500px] h-auto rounded-xl object-cover shadow-xl;
+}
+
+/* career-featuresセクション */
+.features-title-text {
+  @apply text-indigo-800 text-center font-semibold text-[24px] sm:text-[28px] md:text-[32px] lg:text-[36px];
+}
+
+.feature-first-body-text {
+  @apply text-slate-800 md:tracking-[0.05em] leading-[2.0em] text-[16px] sm:text-[16px] md:text-[36px];
+}
+
+.features-second-body-text {
+  @apply text-slate-600 text-center py-5 leading-[1.5em] text-[16px] sm:text-[20px] md:text-[24px];
+}
+
+.features-img {
+  @apply max-w-[300px] max-h-[400px] md:h-auto rounded-xl object-cover shadow-xl;
+}
+
+/* career-voiceセクション */
+.client-text {
+  @apply text-indigo-800 font-semibold text-[22px] sm:text-[32px] md:text-[42px] lg:text-[48px];
+}
+
+.voice-text {
+  @apply text-slate-800 tracking-[0.05em] leading-[1.5em] pt-4 sm:pt-6 text-[18px] sm:text-[20px] md:text-[32px];
+}
+
+.voice-body-text {
+  @apply text-slate-600 tracking-[0.05em] leading-[1.5em] pt-4 sm:pt-6 pl-3 sm:pl-6 text-[14px] sm:text-[16px] md:text-[24px];
+}
+
+.voice-img {
+  @apply w-full max-w-[600px] h-auto rounded-xl md:pt-4 object-cover shadow-xl;
+}
+
+/* career-questionセクション */
+.question-text {
+  @apply text-indigo-800 tracking-[0.05em] pt-4 text-[18px] sm:text-[22px] md:text-[32px] lg:text-[42px] font-semibold;
+}
+
+.answer-text {
+  @apply text-emerald-600 tracking-[0.05em] pt-4 pl-3 sm:pl-6 text-[18px] sm:text-[22px] md:text-[36px] font-semibold;
+}
+
+.body-text {
+  @apply text-slate-600 tracking-[0.05em] leading-[1.5em] pt-4 pl-4 sm:pl-8 text-[14px] sm:text-[16px] md:text-[32px];
+}
+
+/* career-thoughtsセクション */
+.body-big-text {
+  @apply text-indigo-800 tracking-[0em] md:tracking-[0.05em] text-[20px] sm:text-[24px] md:text-[36px] font-semibold;
+}
+
+.body-small-text {
+  @apply text-slate-700 tracking-[0em] md:tracking-[0.05em] leading-[1.5em] text-[16px] sm:text-[20px] md:text-[28px];
+}
